@@ -15,8 +15,13 @@ namespace ChessByKylian
             }
             Board.RenderBoard();
             Console.WriteLine("Press any key to exit...");
-            var tetsin = Board.GetPieceObjectAt(1, 1);
-            tetsin.Move(1, 4);
+            var p1 = Board.GetPieceObjectAt(1, 6);
+            var p2 = Board.GetPieceObjectAt(2, 1);
+            p1.Move(1,4);
+            p2.Move(2,3);
+            p2.Move(1,4);
+            Console.WriteLine(p2.posY + p2.posX + p2.Player1.ToString());
+            
             Board.RenderBoard();
 
         }

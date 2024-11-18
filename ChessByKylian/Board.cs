@@ -10,6 +10,7 @@ namespace ChessByKylian
         private const int height = 8;
         private static int[,] board = new int[height, width];
         private static List<IPiece> pieces = new List<IPiece>();
+        private static List<IPiece> killedPieces = new List<IPiece>();
 
         /// <summary>
         /// Method to render and display the board
@@ -79,6 +80,25 @@ namespace ChessByKylian
         {
             board[oldPosY, oldPosX] = 0; 
             board[newY, newX] = piece.PieceValue;
+            DeletePieceIfOneIsOnLocation(newX, newY);
+        }
+        /// <summary>
+        /// Method that checks if there is a piece at the location a piece is trying to move to, if it's a enemy piece it should be removed.
+        /// </summary>
+        /// <param name="newX"></param>
+        /// <param name="newY"></param>
+        private static void DeletePieceIfOneIsOnLocation(int newX, int newY)
+        {
+            for (int i = 0; i < pieces.Count; i++)
+            {
+                var piece1 = pieces[i];
+                if (piece1.posX == newX && piece1.posY == newY)
+                {
+                    killedPieces.Add(piece1);
+                    pieces.RemoveAt(i);
+                    break;
+                }
+            }
         }
     }
 }

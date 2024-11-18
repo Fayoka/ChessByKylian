@@ -32,22 +32,43 @@ namespace ChessByKylian
 
         private bool IsValidMove(int x, int y)
         {
-            // normal move
-            if (posX == x && posY == y + 1 || posY == y - 1)
+            // normal move for p1
+            if (Player1 && posX == x && posY == y + 1)
             {
                 return true;
             }
-            // first move (can take 2 steps)
+            // normal move for p2
+            if (!Player1 && posY == y - 1)
+            {
+                return true;
+            }
+            // first move for p1 (can take 2 steps)
             if (Player1 && posX == 6 && posY == y + 1 || posY == y + 2)
             {
                 return true;
             }
-            // first move (can take 2 steps)
+            // first move for p2 (can take 2 steps)
             if (!Player1 && posX == 1 && posY == y - 1 || posY == y - 2)
             {
                 return true;
             }
+
+            
             // TO-DO implement logic to take other pieces sideways (not even a clue how to do this)
+            // P1 ++z
+            var enemyPiece = Board.GetPieceObjectAt(x, y);
+            if (enemyPiece != null && enemyPiece.Player1 != Player1)
+            {
+                if (Player1 && posX == x + 1 || posX == x - 1 && posY == y + 1)
+                {
+                    return true;
+                }
+
+                if (!Player1 && posX == x + 1 || posX == x - 1 && posY == y + - 1)
+                {
+                    return true;
+                }
+            }
             return false;
         }
     }
