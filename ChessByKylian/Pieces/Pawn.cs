@@ -52,10 +52,7 @@ namespace ChessByKylian
             {
                 return true;
             }
-
             
-            // TO-DO implement logic to take other pieces sideways (not even a clue how to do this)
-            // P1 ++z
             var enemyPiece = Board.GetPieceObjectAt(x, y);
             if (enemyPiece != null && enemyPiece.Player1 != Player1)
             {
