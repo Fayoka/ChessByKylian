@@ -38,7 +38,7 @@ namespace ChessByKylian
                 return true;
             }
             // normal move for p2
-            if (!Player1 && posY == y - 1)
+            if (!Player1 && posY == y - 1 && posX == x)
             {
                 return true;
             }
@@ -54,8 +54,10 @@ namespace ChessByKylian
             }
             
             var enemyPiece = Board.GetPieceObjectAt(x, y);
+            Console.WriteLine(enemyPiece.Player1);
             if (enemyPiece != null && enemyPiece.Player1 != Player1)
             {
+                Console.WriteLine("Did you check this ? ");
                 if (Player1 && posX == x + 1 || posX == x - 1 && posY == y + 1)
                 {
                     return true;
