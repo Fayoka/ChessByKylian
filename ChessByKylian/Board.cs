@@ -17,10 +17,11 @@ namespace ChessByKylian
         /// </summary>
         public static void RenderBoard()
         {
+            var BoardColomnIndex = 8;
             for (var row = 0; row < width; row++)
             {
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.Write(row + 1 + "  ");
+                Console.Write(BoardColomnIndex-- + "  ");
                 Console.ResetColor();
                 for (var col = 0; col < height; col++)
                 {
@@ -114,10 +115,11 @@ namespace ChessByKylian
 
         public static void FillStartingBoard()
         {
-            FillPlayer1Board();
+            FillWhiteBoard();
+            FillBlackBoard();
         }
 
-        private static void FillPlayer1Board()
+        private static void FillWhiteBoard()
         {
             // Pawn
             for (var i = 0; i < 8; i++)
@@ -149,6 +151,65 @@ namespace ChessByKylian
             King king = new King(4, 7, true);
             Board.AddPiece(queen);
             Board.AddPiece(king);
+        }
+        private static void FillBlackBoard()
+        {
+            // Pawn
+            for (var i = 0; i < 8; i++)
+            {
+                var pawnP1 = new Pawn(i, 1, false);
+                Board.AddPiece(pawnP1);
+            }
+            
+            //Rooks
+            Rook LeftRook = new Rook(0, 0, false);
+            Board.AddPiece(LeftRook);
+            Rook RightRook = new Rook(7, 0, false);
+            Board.AddPiece(RightRook);
+            
+            //Knight
+            Knight LeftKnight = new Knight(1, 0, false);
+            Knight RightKnight = new Knight(6, 0, false);
+            Board.AddPiece(LeftKnight);
+            Board.AddPiece(RightKnight);
+            
+            //Bishop
+            Bishop LeftBishop = new Bishop(2, 0, false);
+            Bishop RightBishop = new Bishop(5, 0, false);
+            Board.AddPiece(LeftBishop);
+            Board.AddPiece(RightBishop);
+            
+            //MasterPieces
+            Queen queen = new Queen(3, 0, false);
+            King king = new King(4, 0, false);
+            Board.AddPiece(queen);
+            Board.AddPiece(king);
+        }
+        /// <summary>
+        /// Returns  the corresponding board positions from algebraic notation.
+        /// </summary>
+        /// <param name="col">The column name, ex: A, B, C</param>
+        /// <param name="row">The index of the row</param>
+        /// <returns>The value for the chess board array [,]</returns>
+        public static int[] ChessNotationToIndex(string col, int row )
+        {
+            var rankMap = new Dictionary<int, int>
+            {
+                { 1, 7 }, { 2, 6 }, { 3, 5 }, { 4, 4 },
+                { 5, 3 }, { 6, 2 }, { 7, 1 }, { 8, 0 }
+            };
+            
+            var fileMap = new Dictionary<string, int>
+            {
+                { "a", 0 }, { "b", 1 }, { "c", 2 }, { "d", 3 },
+                { "e", 4 }, { "f", 5 }, { "g", 6 }, { "h", 7 }
+            };
+
+            // Get the values or default to -1 if invalid input
+            rankMap.TryGetValue(row, out var rankIndex);
+            fileMap.TryGetValue(col.ToLower(), out var fileIndex);
+
+            return new[] { rankIndex, fileIndex };
         }
     }
 }

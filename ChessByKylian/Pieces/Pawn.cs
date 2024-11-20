@@ -10,11 +10,11 @@ namespace ChessByKylian
         public int PieceValue => 1;
         public bool Player1 { get; set; }
         
-        public Pawn(int posX, int posY, bool player1)
+        public Pawn(int posX, int posY, bool Player1)
         {
             this.posX = posX;
             this.posY = posY;
-            this.Player1 = player1;
+            this.Player1 = Player1;
         }
         public void Move(int x, int y)
         {

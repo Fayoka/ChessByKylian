@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
 namespace ChessByKylian
 {
     public static class TestCases
@@ -17,7 +21,6 @@ namespace ChessByKylian
             p1.Move(1,4);
             p2.Move(2,3);
             p2.Move(1,4);
-            
             Board.RenderBoard();
         }
 
