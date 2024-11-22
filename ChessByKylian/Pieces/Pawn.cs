@@ -18,6 +18,7 @@ namespace ChessByKylian
         }
         public void Move(int x, int y)
         {
+            Console.WriteLine("Move Pawn" + x + ", " + y);
             if (IsValidMove(x, y))
             {
                 Board.MovePiece(this, x, y, posX, posY);
@@ -29,19 +30,17 @@ namespace ChessByKylian
                 Console.WriteLine("Invalid move");
             }
         }
-
         private bool IsValidMove(int x, int y)
         {
-            // normal move for p1
-            if (Player1 && posX == x && posY == y + 1)
+            switch (Player1)
             {
-                return true;
+                // normal move for p1
+                case true when posX == x && posY == y + 1:
+                // normal move for p2
+                case false when posY == y - 1 && posX == x:
+                    return true;
             }
-            // normal move for p2
-            if (!Player1 && posY == y - 1 && posX == x)
-            {
-                return true;
-            }
+
             // first move for p1 (can take 2 steps)
             if (Player1 && posX == 6 && posY == y + 1 || posY == y + 2)
             {
@@ -54,7 +53,6 @@ namespace ChessByKylian
             }
             
             var enemyPiece = Board.GetPieceObjectAt(x, y);
-            Console.WriteLine(enemyPiece.Player1);
             if (enemyPiece != null && enemyPiece.Player1 != Player1)
             {
                 Console.WriteLine("Did you check this ? ");

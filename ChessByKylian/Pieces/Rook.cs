@@ -1,7 +1,8 @@
+using System;
+
 namespace ChessByKylian
 {
     public class Rook: IPiece
-
     {
         public int posX { get; set; }
         public int posY { get; set; }
@@ -17,7 +18,31 @@ namespace ChessByKylian
 
         public void Move(int x, int y)
         {
-            throw new System.NotImplementedException();
+            if (isValid(x, y))
+            {
+                throw new NotImplementedException();
+            }
+
+        }
+
+        private bool isValid(int x, int y)
+        {
+            if (posX != x)
+            {
+                // should be a separate function checking if there is a piece in its path
+                for (int i = 0; i < y; i++)
+                {
+                    var foundPiece = Board.GetPieceObjectAt(x, i);
+                    if (foundPiece != null)
+                    {
+                        return true;
+                    }
+                    {
+                        
+                    }
+                }
+            }
+            return false;
         }
     }
 }

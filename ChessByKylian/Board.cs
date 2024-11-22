@@ -17,11 +17,11 @@ namespace ChessByKylian
         /// </summary>
         public static void RenderBoard()
         {
-            var BoardColomnIndex = 8;
+            var boardColumnIndex = 8;
             for (var row = 0; row < width; row++)
             {
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.Write(BoardColomnIndex-- + "  ");
+                Console.Write(boardColumnIndex-- + "  ");
                 Console.ResetColor();
                 for (var col = 0; col < height; col++)
                 {

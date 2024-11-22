@@ -26,7 +26,7 @@ namespace ChessByKylian
 
         public static void TestGame()
         {
-            Game.GameStart();
+            Game.StartGame();
         }
     }
 }
